@@ -31,7 +31,7 @@ while IFS= read -r fqgz; do
     BASE_NAME=$(basename -- "$fqgz" .fastq.gz)
     echo -e "\e[0;34mInfo： Perform FastQC processing: ${BASE_NAME} ...\e[0m"
 
-    fastqc "$fqgz" -o "${FASTQC_OUTPUT_DIR}" --threads 4
+    fastqc "$fqgz" -o "${FASTQC_OUTPUT_DIR}" --threads $THREAD_NUM
     
     # Check whether the previous command was successful
     if [ $? -ne 0 ]; then
