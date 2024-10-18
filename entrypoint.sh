@@ -3,6 +3,7 @@
 # lyx 8/20/2024
 
 # working dir and output dir
+
 FASTQC_OUTPUT_DIR="/mnt/fastqc_output"
 MULTIQC_OUTPUT_DIR="/mnt/multiqc_output"
 
