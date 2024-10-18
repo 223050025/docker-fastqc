@@ -3,7 +3,7 @@
 # lyx 8/20/2024
 
 # working dir and output dir
-
+INPUT_DIR="/mnt/in"
 FASTQC_OUTPUT_DIR="/mnt/fastqc_output"
 MULTIQC_OUTPUT_DIR="/mnt/multiqc_output"
 
@@ -18,7 +18,7 @@ mkdir -p "${MULTIQC_OUTPUT_DIR}"
 
 # find and fastqc every .fastq.gz
 tmpfile=$(mktemp)
-find /data -type f -name "*.fastq.gz" > "$tmpfile"
+find "$INPUT_DIR" -type f -name "*.fastq.gz" > "$tmpfile"
 
 # Check if the.fastq.gz file was found
 if [ ! -s "$tmpfile" ]; then
