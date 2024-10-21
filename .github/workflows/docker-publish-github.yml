@@ -55,18 +55,18 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-      - name: Build and push Docker image to GitHub Container Registry（ghcr.io/Docker Hub)
-        if: github.event_name != 'pull_request'
-        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09
-        with:
-          context: .
-          push: true
-          tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-            docker.io/cuhkhaosun/multiqc:latest
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+      #- name: Build and push Docker image to GitHub Container Registry（ghcr.io/Docker Hub)
+      #  if: github.event_name != 'pull_request'
+      #  uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09
+      #  with:
+      #    context: .
+      #    push: true
+      #    tags: |
+      #      ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+      #      docker.io/cuhkhaosun/multiqc:latest
+      #    labels: ${{ steps.meta.outputs.labels }}
+      #    cache-from: type=gha
+      #    cache-to: type=gha,mode=max
 
       #- name: Build and Push Docker hub
       #  uses: docker/build-push-action@v5
