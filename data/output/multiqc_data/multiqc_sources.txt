@@ -1,3 +1,0 @@
-Module	Section	Sample Name	Source
-FastQC	all_sections	SRR13960345_1_test	/mnt/out/SRR13960345_1_test_fastqc.zip
-FastQC	all_sections	SRR13960345_2_test	/mnt/out/SRR13960345_2_test_fastqc.zip
