@@ -75,7 +75,7 @@ jobs:
     
     - name: Run container with environment variables
       run: |
-          docker run --name "${{ github.event.inputs.JOB_NAME }}_container" \
+          docker run --name "${{ github.event.inputs.JOB_NAME }}_fastqc_container" \
             -v ${{ github.event.inputs.INPUT_PATH }}:/mnt/in \
             -v ${{ github.event.inputs.OUTPUT_PATH }}:/mnt/out \
             -e JOB_NAME=${{ github.event.inputs.JOB_NAME }} \
@@ -85,8 +85,8 @@ jobs:
 
     - name: Stop and remove container
       run: |
-          docker stop "${{ github.event.inputs.JOB_NAME }}_container"
-          docker rm "${{ github.event.inputs.JOB_NAME }}_container"
+          docker stop "${{ github.event.inputs.JOB_NAME }}_fastqc_container"
+          docker rm "${{ github.event.inputs.JOB_NAME }}_fastqc_container"
           
 
   trim:
@@ -104,17 +104,17 @@ jobs:
       
     - name: Run container with environment variables
       run: |
-          docker run --name "${{ github.event.inputs.JOB_NAME }}_container" \
+          docker run --name "${{ github.event.inputs.JOB_NAME }}_trim_container" \
             -v ${{ github.event.inputs.INPUT_PATH }}:/mnt/in \
             -v ${{ github.event.inputs.OUTPUT_PATH }}:/mnt/out \
             -e JOB_NAME=${{ github.event.inputs.JOB_NAME }} \
             -e THREAD_NUM=${{ github.event.inputs.THREAD_NUM }} \
-            ghcr.io/cuhk-haosun/code-docker-fastqc:latest
+            cuhkhaosun/aligner-minimap2:latest
     
     - name: Stop and remove container
       run: |
-          docker stop "${{ github.event.inputs.JOB_NAME }}_container"
-          docker rm "${{ github.event.inputs.JOB_NAME }}_container"
+          docker stop "${{ github.event.inputs.JOB_NAME }}_trim_container"
+          docker rm "${{ github.event.inputs.JOB_NAME }}_trim_container"
 
 # Upload the results to branch
 
