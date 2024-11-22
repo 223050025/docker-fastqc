@@ -125,8 +125,11 @@ jobs:
     runs-on: ${{ github.event.inputs.RUN_LOCATION }}
 
     steps:
-    #- name: Checkout repository
-      #uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+      
     - name: Check Git repository status
       run: |
         pwd
