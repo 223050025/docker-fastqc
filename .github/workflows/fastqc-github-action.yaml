@@ -89,39 +89,39 @@ jobs:
           docker rm "${{ github.event.inputs.JOB_NAME }}_fastqc_container"
           
 
-  trim:
+  #trim:
   
-    name: sequence alignment
-    needs: fastqc
-    runs-on: ${{ github.event.inputs.RUN_LOCATION }}
+    #name: sequence alignment
+    #needs: fastqc
+    #runs-on: ${{ github.event.inputs.RUN_LOCATION }}
   
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+    #steps:
+    #- name: Checkout repository
+      #uses: actions/checkout@v2
       
-    - name: Pull Docker image
-      run: docker pull cuhkhaosun/aligner-minimap2:latest
+    #- name: Pull Docker image
+      #run: docker pull cuhkhaosun/aligner-minimap2:latest
       
-    - name: Run container with environment variables
-      run: |
-          docker run --name "${{ github.event.inputs.JOB_NAME }}_trim_container" \
-            -v ${{ github.event.inputs.INPUT_PATH }}:/mnt/in \
-            -v ${{ github.event.inputs.OUTPUT_PATH }}:/mnt/out \
-            -e JOB_NAME=${{ github.event.inputs.JOB_NAME }} \
-            -e THREAD_NUM=${{ github.event.inputs.THREAD_NUM }} \
-            cuhkhaosun/aligner-minimap2:latest
+    #- name: Run container with environment variables
+      #run: |
+          #docker run --name "${{ github.event.inputs.JOB_NAME }}_trim_container" \
+            #-v ${{ github.event.inputs.INPUT_PATH }}:/mnt/in \
+            #-v ${{ github.event.inputs.OUTPUT_PATH }}:/mnt/out \
+            #-e JOB_NAME=${{ github.event.inputs.JOB_NAME }} \
+            #-e THREAD_NUM=${{ github.event.inputs.THREAD_NUM }} \
+            #cuhkhaosun/aligner-minimap2:latest
     
-    - name: Stop and remove container
-      run: |
-          docker stop "${{ github.event.inputs.JOB_NAME }}_trim_container"
-          docker rm "${{ github.event.inputs.JOB_NAME }}_trim_container"
+    #- name: Stop and remove container
+      #run: |
+          #docker stop "${{ github.event.inputs.JOB_NAME }}_trim_container"
+          #docker rm "${{ github.event.inputs.JOB_NAME }}_trim_container"
 
 # Upload the results to branch
 
   upload-results:
   
     name: Upload Results
-    needs: trim
+    needs: fastqc
     runs-on: ${{ github.event.inputs.RUN_LOCATION }}
 
     steps:
