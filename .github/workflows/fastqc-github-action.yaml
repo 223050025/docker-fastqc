@@ -127,13 +127,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-      
-    - name: Check Git repository status
-      run: |
-        pwd
-        git status
       
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v6
