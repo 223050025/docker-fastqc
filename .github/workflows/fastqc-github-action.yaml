@@ -121,7 +121,7 @@ jobs:
   upload-results:
   
     name: Upload Results
-    needs: fastqc
+    needs: trim
     runs-on: ${{ github.event.inputs.RUN_LOCATION }}
 
     steps:
